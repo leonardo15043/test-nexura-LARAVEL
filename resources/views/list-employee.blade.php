@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h1 class="display-6 mb-5">Lista de Empleados</h1>
-<a href="" class="btn btn-primary">Agregar</a>
+<a href="{{ url('/employee/create') }}" class="btn btn-primary">Agregar</a>
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -15,45 +15,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>  
-            <td>leonardo</td>
-            <td>lahernandez15043@gmail.com</td>
-            <td>Masculino</td>
-            <td>Calidad</td>
-            <td>Si</td>
-            <td>
-                <a class="btn btn-primary" >Editar</a>
-            </td>
-            <td>
-                <a class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-        <tr>  
-            <td>leonardo</td>
-            <td>lahernandez15043@gmail.com</td>
-            <td>Masculino</td>
-            <td>Calidad</td>
-            <td>Si</td>
-            <td>
-                <a class="btn btn-primary" >Editar</a>
-            </td>
-            <td>
-                <a class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
-        <tr>  
-            <td>leonardo</td>
-            <td>lahernandez15043@gmail.com</td>
-            <td>Masculino</td>
-            <td>Calidad</td>
-            <td>Si</td>
-            <td>
-                <a class="btn btn-primary" >Editar</a>
-            </td>
-            <td>
-                <a class="btn btn-danger">Eliminar</a>
-            </td>
-        </tr>
+        @foreach( $employees as $employee )
+            <tr>  
+                <td>{{ $employee->name }}</td>
+                <td>{{ $employee->email }}</td>
+                <td>{{ $employee->sex == 'F' ? 'Femenino':'Masculino' }}</td>
+                <td>{{ $employee->name_area }}</td>
+                <td>{{ $employee->bulletin == 1 ? 'Si':'No' }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ route('employee.edit',$employee->id) }}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        @endforeach
     </tbody>
   </table>
 @endsection
