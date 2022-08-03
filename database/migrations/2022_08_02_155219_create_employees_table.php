@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->char('sex',1);
             $table->integer("area_id")->unsigned();
             $table->foreign('area_id')->references('id')->on('areas');
-            $table->integer("bulletin");
+            $table->integer("bulletin")->nullable();
             $table->longText('description');
             $table->timestamps();
         });
