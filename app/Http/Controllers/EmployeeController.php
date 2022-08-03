@@ -109,4 +109,15 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('success','Empleado actualizado correctamente.');
     }
     
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Employee $employee)
+    {
+        $employee->delete();
+        return redirect()->route('employee.index')->with('success','Empleado eliminado correctamente.');
+    }
 }

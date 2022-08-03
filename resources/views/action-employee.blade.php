@@ -1,16 +1,18 @@
 @extends('layouts.app')
 @section('content')
 <h1 class="display-6 mb-5"> @if ($employee['id']) Editar @else Crear @endif  Empleado</h1>
-
+<div class="alert alert-info" role="alert">
+  Los campos con asterisco (*) son obligatorios
+</div>
 @if ($employee['id'])
-<form action="{{ route('employee.update',$employee['id']) }}" method="POST" class="row g-3">
+<form action="{{ route('employee.update',$employee['id']) }}" method="POST" class="row g-3 mt-5">
 @method('PUT')
 @else
-<form action="{{ route('employee.store') }}" method="POST" class="row g-3">
+<form action="{{ route('employee.store') }}" method="POST" class="row g-3 mt-5">
 @endif
 @csrf
     <div class="mb-3 row">
-        <label for="name" class="col-sm-2 col-form-label">Nombre completo</label>
+        <label for="name" class="col-sm-2 col-form-label">Nombre completo *</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo del empleado" value="{{ $employee['name'] }}">
             @error('name')
@@ -19,7 +21,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <label for="email" class="col-sm-2 col-form-label">Correo electronico *</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="email" name="email" placeholder="Correo electrónico" value="{{ $employee['email'] }}">
             @error('email')
@@ -28,7 +30,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Sexo</label>
+        <label for="email" class="col-sm-2 col-form-label">Sexo *</label>
         <div class="col-sm-10">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sex" id="male" value="M" {{ $employee['sex'] == "M" ? "checked" : "" }}>
@@ -48,7 +50,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Area</label>
+        <label for="email" class="col-sm-2 col-form-label">Area *</label>
         <div class="col-sm-10">
             <select class="form-select" name="area_id">
                 <option value="">Seleccionar area</option>
@@ -62,7 +64,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="description" class="col-sm-2 col-form-label">Descripción</label>
+        <label for="description" class="col-sm-2 col-form-label">Descripción *</label>
         <div class="col-sm-10">
             <textarea class="form-control" id="description" name="description" rows="3">{{ $employee['description'] }}</textarea>
             <div class="form-check">
@@ -77,7 +79,7 @@
         </div>
     </div>
     <div class="mb-3 row">
-        <label for="email" class="col-sm-2 col-form-label">Roles</label>
+        <label for="email" class="col-sm-2 col-form-label">Roles *</label>
         <div class="col-sm-10">
             @foreach( $roles as $rol )
                 <div class="form-check">

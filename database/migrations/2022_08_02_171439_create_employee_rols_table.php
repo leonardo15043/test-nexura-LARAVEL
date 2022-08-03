@@ -16,7 +16,7 @@ class CreateEmployeeRolsTable extends Migration
         Schema::create('employee_rols', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("empleado_id")->unsigned();
-            $table->foreign('empleado_id')->references('id')->on('employees');
+            $table->foreign('empleado_id')->references('id')->on('employees')->onDelete('cascade');;
             $table->integer("rol_id")->unsigned();
             $table->foreign('rol_id')->references('id')->on('roles');
             $table->timestamps();
